@@ -1,0 +1,28 @@
+<h1>Galeria</h1>
+<p>by K.Baś, P.Wójcik</p>
+<span style="font-size: 0; color: white">based tightly on AEGallery from anyexample</span>
+
+<table>
+  <tr>
+  <% for column in Image.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for image in @images %>
+  <tr>
+  <% for column in Image.content_columns %>
+    <td><%=h image.send(column.name) %></td>
+  <% end %>
+    <td><%= image.img_tag_thumbnail %></td>
+    <td><%= link_to 'Pokaż', :action => 'show', :id => image %></td>
+    <td><%= link_to 'Edytuj', :action => 'edit', :id => image %></td>
+    <td><%= link_to 'Usuń', { :action => 'destroy', :id => image }, :confirm => 'Na pewno? Tego nie da się cofnąć!', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Poprzednia', { :page => @image_pages.current.previous } if @image_pages.current.previous %>
+<%= link_to 'Następna', { :page => @image_pages.current.next } if @image_pages.current.next %> 
+<br />
+<%= link_to 'Dodaj obrazek', :action => 'new' %>

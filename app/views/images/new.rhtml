@@ -1,0 +1,6 @@
+<h1>Nowy obrazek</h1>
+<% form_tag({:action => 'create'}, :multipart => true)  do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Dodaj" %>
+<% end %>
+<%= link_to 'Wróć', :action => 'list' %>
